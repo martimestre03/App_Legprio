@@ -1,50 +1,103 @@
-# Welcome to your Expo app 👋
+# 📱 LegPrio BLE Viewer App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a [React Native](https://reactnative.dev/) + [Expo](https://expo.dev/) project built to visualize real-time proprioception data sent via BLE by the LegPrio wearable system.
 
-## Get started
+## 🔧 Get Started
 
-1. Install dependencies
+1. Clone the repository and navigate to the project:
+
+   ```bash
+   git clone https://github.com/martimestre03/App_Legprio.git
+   cd App_Legprio
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Create a custom development build to support BLE:
 
-   ```bash
-    npx expo start
-   ```
+   > Expo Go **does not support Bluetooth**. You must use a custom build.
 
-In the output, you'll find options to open the app in a
+   1. Install EAS CLI if you haven't:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+      ```bash
+      npm install -g eas-cli
+      ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   2. Configure your project:
 
-## Get a fresh project
+      ```bash
+      eas build:configure
+      ```
 
-When you're ready, run:
+   3. Build the app:
 
-```bash
-npm run reset-project
+      ```bash
+      eas build --profile development --platform android
+      ```
+
+      or for iOS:
+
+      ```bash
+      eas build --profile development --platform ios
+      ```
+
+   4. Once the build is complete, install it on your phone to test the BLE connection.
+
+---
+
+## 📡 BLE Integration
+
+This app scans and connects to the LegPrio BLE device. Once connected, it listens for characteristic updates in JSON format like:
+
+```json
+{
+  "t": 12345678,
+  "p": -36.4,
+  "b": 0.253,
+  "s": 0.230,
+  "e": 0.310
+}
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- `t`: Absolute timestamp (µs)
+- `p`: Position at button press (mm)
+- `b`: Button press relative to central sensor (s)
+- `s`: Step start time relative (s)
+- `e`: Step end time relative (s)
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🖼️ Screenshots
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+_You can add images of the UI or graphs here:_
 
-## Join the community
+![Home Screen](./assets/screens/home.png)  
+![BLE Connection](./assets/screens/connection.png)  
+![Data Chart](./assets/screens/chart.png)
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 📂 Project Structure
+
+- `app/` — Main UI and navigation
+- `ble/` — Bluetooth connection logic
+- `components/` — Custom UI components
+- `store/` — Context and state management
+- `utils/` — Helpers for parsing and formatting
+
+---
+
+## 👨‍🔬 Developed By
+
+Martí Mestre  
+BSc Electronics & Telecom @UPC / Research Intern @UCI
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
