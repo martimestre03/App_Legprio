@@ -73,11 +73,11 @@ This app scans and connects to the LegPrio BLE device. Once connected, it listen
 
 ## 🖼️ Screenshots
 
-_You can add images of the UI or graphs here:_
-
-![Home Screen](./assets/screens/toconnect.png)  
-![BLE Connection](./assets/screens/connected.png)  
-![Data Chart](./assets/screens/working.png)
+<p align="center">
+  <img src="./assets/screens/toconnect.png" alt="To Connect" width="30%" />
+  <img src="./assets/screens/connected.png" alt="Connected" width="30%" />
+  <img src="./assets/screens/working.png" alt="Working" width="30%" />
+</p>
 
 ---
 
